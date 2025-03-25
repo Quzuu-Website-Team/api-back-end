@@ -71,7 +71,7 @@ func Find[T1 any, T2 any](repo *Repository[T1, T2]) *gorm.DB {
 	return tx
 }
 
-func FinddAllPaginate[T1 any, T2 any](repo *Repository[T1, T2]) *gorm.DB {
+func FindAllPaginate[T1 any, T2 any](repo *Repository[T1, T2]) *gorm.DB {
 	tx := repo.Transaction.Limit(repo.Pagination.Limit).Offset(repo.Pagination.Offset).Find(&repo.Result)
 	repo.RowsCount = int(tx.RowsAffected)
 	repo.NoRecord = repo.RowsCount == 0
